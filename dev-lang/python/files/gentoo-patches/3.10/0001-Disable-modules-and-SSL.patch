@@ -1,7 +1,7 @@
-From 599f3e2020dc3164f31ca7012422f2b9b81d85bc Mon Sep 17 00:00:00 2001
+From 93957d06747393f0b0f4f5e61ebc1b54061e4483 Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Fri, 5 Jan 2018 13:30:32 -0500
-Subject: [PATCH 01/12] Disable modules and SSL
+Subject: [PATCH 01/11] Disable modules and SSL
 
 ---
  setup.py | 15 +++++++++++++--

@@ -1,7 +1,7 @@
-From 6eaa412b7758ccf1c9d48c6380ff4df2e45a53ff Mon Sep 17 00:00:00 2001
+From e820387b419dc73bed8dd622853deb45c38fee4f Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Fri, 6 Jul 2018 14:49:00 -0400
-Subject: [PATCH 07/12] Install shared libs in LIBDEST
+Subject: [PATCH 07/11] Install shared libs in LIBDEST
 
 ---
  Makefile.pre.in | 5 ++---

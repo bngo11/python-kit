@@ -1,7 +1,7 @@
-From 28f673d8f50b2030801f55232f82741e0a193c1c Mon Sep 17 00:00:00 2001
+From 69fccd4a801cb0e2f303f765e1bee8d7589d803f Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Fri, 5 Jan 2018 13:31:37 -0500
-Subject: [PATCH 02/12] Override libdir
+Subject: [PATCH 02/11] Override libdir
 
 ---
  setup.py | 24 ++++++++++--------------

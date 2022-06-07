@@ -1,7 +1,7 @@
-From 219e246e3b16d7258f6d7c5d68ab61b5bdea9c8e Mon Sep 17 00:00:00 2001
+From 0caed33d5edd56f45bc4e34945354b652281d15d Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Fri, 5 Jan 2018 13:34:21 -0500
-Subject: [PATCH 04/12] Improve distutils C++ support
+Subject: [PATCH 04/11] Improve distutils C++ support
 
 https://bugs.python.org/issue1222585
 ---

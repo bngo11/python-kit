@@ -1,7 +1,7 @@
-From c25a92af24a0ba6259f4dcb487d97beaa98a336e Mon Sep 17 00:00:00 2001
+From f2d55c9d9d5c936ca57131c07fdfbf0f9edd4b82 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Sun, 5 Jun 2016 08:18:01 +0200
-Subject: [PATCH 06/12] distutils: make -OO enable both opt-1 and opt-2
+Subject: [PATCH 06/11] distutils: make -OO enable both opt-1 and opt-2
  optimization
 
 Bug: http://bugs.python.org/issue27226

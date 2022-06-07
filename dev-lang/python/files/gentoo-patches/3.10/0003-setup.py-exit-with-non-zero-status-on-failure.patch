@@ -1,7 +1,7 @@
-From b86a86773a7c49cad26df64493f4cb818c9e3272 Mon Sep 17 00:00:00 2001
+From 325816672fd5b21cef930e938845d662cb96ee50 Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Fri, 5 Jan 2018 13:32:45 -0500
-Subject: [PATCH 03/12] setup.py: exit with non-zero status on failure
+Subject: [PATCH 03/11] setup.py: exit with non-zero status on failure
 
 https://bugs.gentoo.org/show_bug.cgi?id=281968
 https://bugs.python.org/issue6731

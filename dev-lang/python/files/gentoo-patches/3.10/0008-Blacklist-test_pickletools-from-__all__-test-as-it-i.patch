@@ -1,7 +1,7 @@
-From 1ac21753cf11ca025a3b73641cba3ca5acff28fe Mon Sep 17 00:00:00 2001
+From 34335a9dad5ebb0c05c96ab6921c510aa761bafb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Wed, 22 Apr 2020 14:12:47 +0200
-Subject: [PATCH 08/12] Blacklist test_pickletools from __all__ test as it
+Subject: [PATCH 08/11] Blacklist test_pickletools from __all__ test as it
  imports numpy
 
 The test imports numpy, bringing its warnings along with it and causing

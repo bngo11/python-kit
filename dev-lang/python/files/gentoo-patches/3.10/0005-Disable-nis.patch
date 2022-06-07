@@ -1,7 +1,7 @@
-From f4ea33683d517ae9cc8d9e28f3c443393a0b2bf6 Mon Sep 17 00:00:00 2001
+From 9bd07d2ae66ecdc134a44d9c091f44a0ccbe6050 Mon Sep 17 00:00:00 2001
 From: Mike Gilbert <floppym@gentoo.org>
 Date: Wed, 4 Jul 2018 11:39:21 -0400
-Subject: [PATCH 05/12] Disable nis
+Subject: [PATCH 05/11] Disable nis
 
 ---
  setup.py | 1 -
