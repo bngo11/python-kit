@@ -10,11 +10,11 @@ PYVER=$(ver_cut 1-2)
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
-SRC_URI="https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tar.xz -> Python-3.8.16.tar.xz"
+SRC_URI="https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tar.xz -> Python-3.7.17.tar.xz"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="PSF-2"
-SLOT="${PYVER}"
+SLOT="${PYVER}/${PYVER}m"
 KEYWORDS="*"
 IUSE="bluetooth build examples gdbm hardened ipv6 libressl +ncurses +optimize +readline sqlite +ssl test tk wininst +xml"
 RESTRICT="!test? ( test )"
@@ -49,7 +49,6 @@ RDEPEND="app-arch/bzip2:=
 DEPEND="${RDEPEND}
 	bluetooth? ( net-wireless/bluez )
 	test? ( app-arch/xz-utils[extra-filters(+)] )
-	sys-devel/autoconf-archive
 	virtual/pkgconfig
 	!sys-devel/gcc[libffi(-)]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
@@ -300,11 +299,13 @@ src_install() {
 	chmod +x "${scriptdir}/python${pymajor}-config" || die
 	ln -s "python${pymajor}-config" \
 		"${scriptdir}/python-config" || die
-	# 2to3, pydoc
+	# 2to3, pydoc, pyvenv
 	ln -s "../../../bin/2to3-${PYVER}" \
 		"${scriptdir}/2to3" || die
 	ln -s "../../../bin/pydoc${PYVER}" \
 		"${scriptdir}/pydoc" || die
+	ln -s "../../../bin/pyvenv-${PYVER}" \
+		"${scriptdir}/pyvenv" || die
 	# idle
 	if use tk; then
 		ln -s "../../../bin/idle${PYVER}" \
