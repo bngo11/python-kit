@@ -1,0 +1,38 @@
+From e300e62da337e0192c4c19838b0779b76762f8e2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
+Date: Wed, 6 Sep 2023 15:02:14 +0200
+Subject: [PATCH 7/8] Prevent tests from detecting our fake tzdata package
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Tests from test_zoneinfo assume that if `tzdata` package is installed,
+it provides standalone timezone data.  Our `tzdata` package is just
+a shim, so force falsify that assumption.
+
+Signed-off-by: Michał Górny <mgorny@gentoo.org>
+---
+ Lib/test/test_zoneinfo/test_zoneinfo.py | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/Lib/test/test_zoneinfo/test_zoneinfo.py b/Lib/test/test_zoneinfo/test_zoneinfo.py
+index 1e71b72dc87..818478eba4d 100644
+--- a/Lib/test/test_zoneinfo/test_zoneinfo.py
++++ b/Lib/test/test_zoneinfo/test_zoneinfo.py
+@@ -25,11 +25,8 @@
+ lzma = import_module('lzma')
+ py_zoneinfo, c_zoneinfo = test_support.get_modules()
+ 
+-try:
+-    importlib.metadata.metadata("tzdata")
+-    HAS_TZDATA_PKG = True
+-except importlib.metadata.PackageNotFoundError:
+-    HAS_TZDATA_PKG = False
++# Gentoo installs a dummy `tzdata` package
++HAS_TZDATA_PKG = False
+ 
+ ZONEINFO_DATA = None
+ ZONEINFO_DATA_V1 = None
+-- 
+2.45.2
+

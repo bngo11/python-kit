@@ -1,0 +1,125 @@
+From 14a94d2b1aa112a102190d71daf99e24c82ada0d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
+Date: Sat, 6 Jan 2024 08:15:54 +0100
+Subject: [PATCH 8/8] test_lzma: Skip tests requiring extra-filters
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Michał Górny <mgorny@gentoo.org>
+---
+ Lib/test/test_lzma.py | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/Lib/test/test_lzma.py b/Lib/test/test_lzma.py
+index db290e13932..af74b9be2e0 100644
+--- a/Lib/test/test_lzma.py
++++ b/Lib/test/test_lzma.py
+@@ -117,14 +117,17 @@ def test_decompressor_raw_1(self):
+         lzd = LZMADecompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_1)
+         self._test_decompressor(lzd, COMPRESSED_RAW_1, lzma.CHECK_NONE)
+ 
++    @unittest.skip("Gentoo: requires app-arch?xz-utils[extra-filters]")
+     def test_decompressor_raw_2(self):
+         lzd = LZMADecompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_2)
+         self._test_decompressor(lzd, COMPRESSED_RAW_2, lzma.CHECK_NONE)
+ 
++    @unittest.skip("Gentoo: requires app-arch?xz-utils[extra-filters]")
+     def test_decompressor_raw_3(self):
+         lzd = LZMADecompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_3)
+         self._test_decompressor(lzd, COMPRESSED_RAW_3, lzma.CHECK_NONE)
+ 
++    @unittest.skip("Gentoo: requires app-arch?xz-utils[extra-filters]")
+     def test_decompressor_raw_4(self):
+         lzd = LZMADecompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         self._test_decompressor(lzd, COMPRESSED_RAW_4, lzma.CHECK_NONE)
+@@ -287,12 +290,14 @@ def test_roundtrip_alone(self):
+         lzd = LZMADecompressor()
+         self._test_decompressor(lzd, cdata, lzma.CHECK_NONE)
+ 
++    @unittest.skip("Gentoo: requires app-arch?xz-utils[extra-filters]")
+     def test_roundtrip_raw(self):
+         lzc = LZMACompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         cdata = lzc.compress(INPUT) + lzc.flush()
+         lzd = LZMADecompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         self._test_decompressor(lzd, cdata, lzma.CHECK_NONE)
+ 
++    @unittest.skip("Gentoo: requires app-arch?xz-utils[extra-filters]")
+     def test_roundtrip_raw_empty(self):
+         lzc = LZMACompressor(lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         cdata = lzc.compress(INPUT)
+@@ -446,6 +451,8 @@ def test_decompress_good_input(self):
+                 COMPRESSED_RAW_1, lzma.FORMAT_RAW, filters=FILTERS_RAW_1)
+         self.assertEqual(ddata, INPUT)
+ 
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         ddata = lzma.decompress(
+                 COMPRESSED_RAW_2, lzma.FORMAT_RAW, filters=FILTERS_RAW_2)
+         self.assertEqual(ddata, INPUT)
+@@ -463,6 +470,8 @@ def test_decompress_incomplete_input(self):
+         self.assertRaises(LZMAError, lzma.decompress, COMPRESSED_ALONE[:128])
+         self.assertRaises(LZMAError, lzma.decompress, COMPRESSED_RAW_1[:128],
+                           format=lzma.FORMAT_RAW, filters=FILTERS_RAW_1)
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         self.assertRaises(LZMAError, lzma.decompress, COMPRESSED_RAW_2[:128],
+                           format=lzma.FORMAT_RAW, filters=FILTERS_RAW_2)
+         self.assertRaises(LZMAError, lzma.decompress, COMPRESSED_RAW_3[:128],
+@@ -498,6 +507,8 @@ def test_roundtrip(self):
+         ddata = lzma.decompress(cdata)
+         self.assertEqual(ddata, INPUT)
+ 
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         cdata = lzma.compress(INPUT, lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         ddata = lzma.decompress(cdata, lzma.FORMAT_RAW, filters=FILTERS_RAW_4)
+         self.assertEqual(ddata, INPUT)
+@@ -801,6 +812,8 @@ def test_read(self):
+                       format=lzma.FORMAT_RAW, filters=FILTERS_RAW_1) as f:
+             self.assertEqual(f.read(), INPUT)
+             self.assertEqual(f.read(), b"")
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         with LZMAFile(BytesIO(COMPRESSED_RAW_2),
+                       format=lzma.FORMAT_RAW, filters=FILTERS_RAW_2) as f:
+             self.assertEqual(f.read(), INPUT)
+@@ -837,6 +850,8 @@ def test_read_multistream(self):
+             self.assertEqual(f.read(), INPUT * 5)
+         with LZMAFile(BytesIO(COMPRESSED_XZ + COMPRESSED_ALONE)) as f:
+             self.assertEqual(f.read(), INPUT * 2)
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         with LZMAFile(BytesIO(COMPRESSED_RAW_3 * 4),
+                       format=lzma.FORMAT_RAW, filters=FILTERS_RAW_3) as f:
+             self.assertEqual(f.read(), INPUT * 4)
+@@ -1013,6 +1028,8 @@ def test_iterator(self):
+             self.assertListEqual(list(iter(f)), lines)
+         with LZMAFile(BytesIO(COMPRESSED_ALONE), format=lzma.FORMAT_ALONE) as f:
+             self.assertListEqual(list(iter(f)), lines)
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         with LZMAFile(BytesIO(COMPRESSED_RAW_2),
+                       format=lzma.FORMAT_RAW, filters=FILTERS_RAW_2) as f:
+             self.assertListEqual(list(iter(f)), lines)
+@@ -1057,6 +1074,8 @@ def test_write(self):
+                 f.write(INPUT)
+             expected = lzma.compress(INPUT, format=lzma.FORMAT_ALONE)
+             self.assertEqual(dst.getvalue(), expected)
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         with BytesIO() as dst:
+             with LZMAFile(dst, "w", format=lzma.FORMAT_RAW,
+                           filters=FILTERS_RAW_2) as f:
+@@ -1494,6 +1513,8 @@ def test__decode_filter_properties(self):
+         self.assertEqual(filterspec["lc"], 3)
+         self.assertEqual(filterspec["dict_size"], 8 << 20)
+ 
++        # Gentoo: these require app-arch?xz-utils[extra-filters]
++        return
+         # see gh-104282
+         filters = [lzma.FILTER_X86, lzma.FILTER_POWERPC,
+                    lzma.FILTER_IA64, lzma.FILTER_ARM,
+-- 
+2.45.2
+

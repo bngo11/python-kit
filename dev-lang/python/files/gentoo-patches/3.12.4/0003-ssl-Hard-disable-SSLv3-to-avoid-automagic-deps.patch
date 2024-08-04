@@ -1,0 +1,28 @@
+From 5146d2be181796e7a26622f2f56970d21d40d117 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
+Date: Wed, 3 Feb 2021 10:14:49 +0100
+Subject: [PATCH 3/8] ssl: Hard-disable SSLv3 to avoid automagic deps
+
+Bug: https://bugs.gentoo.org/767886
+---
+ Modules/_ssl.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Modules/_ssl.c b/Modules/_ssl.c
+index 85fbc162823..90754edcbff 100644
+--- a/Modules/_ssl.c
++++ b/Modules/_ssl.c
+@@ -69,6 +69,10 @@
+ #  error "OPENSSL_THREADS is not defined, Python requires thread-safe OpenSSL"
+ #endif
+ 
++#ifndef OPENSSL_NO_SSL3
++#  define OPENSSL_NO_SSL3 1
++#endif
++
+ 
+ 
+ struct py_ssl_error_code {
+-- 
+2.45.2
+
