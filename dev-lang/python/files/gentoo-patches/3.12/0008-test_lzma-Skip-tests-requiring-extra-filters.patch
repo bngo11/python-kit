@@ -1,4 +1,4 @@
-From 14a94d2b1aa112a102190d71daf99e24c82ada0d Mon Sep 17 00:00:00 2001
+From 9f95dff179f7d2e75e75c41cbc524ed34ce59ef2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Sat, 6 Jan 2024 08:15:54 +0100
 Subject: [PATCH 8/8] test_lzma: Skip tests requiring extra-filters

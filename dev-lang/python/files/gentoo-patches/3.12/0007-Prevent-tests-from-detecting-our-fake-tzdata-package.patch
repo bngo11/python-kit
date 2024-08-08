@@ -1,4 +1,4 @@
-From e300e62da337e0192c4c19838b0779b76762f8e2 Mon Sep 17 00:00:00 2001
+From b3998653520c91df059a6b4f8f1402e4ed6ce1b4 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Wed, 6 Sep 2023 15:02:14 +0200
 Subject: [PATCH 7/8] Prevent tests from detecting our fake tzdata package

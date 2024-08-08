@@ -1,7 +1,7 @@
-From b10ccbf756d77a81fa6c61a6778128bb73a270a2 Mon Sep 17 00:00:00 2001
+From 52cdac39e5b2d6a0849699a9b434cc8eea97b480 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Wed, 3 Feb 2021 10:14:49 +0100
-Subject: [PATCH 13/19] ssl: Hard-disable SSLv3 to avoid automagic deps
+Subject: [PATCH 3/8] ssl: Hard-disable SSLv3 to avoid automagic deps
 
 Bug: https://bugs.gentoo.org/767886
 ---
@@ -9,10 +9,10 @@ Bug: https://bugs.gentoo.org/767886
  1 file changed, 4 insertions(+)
 
 diff --git a/Modules/_ssl.c b/Modules/_ssl.c
-index 719f8e8ca3..61cce77b6d 100644
+index 85fbc162823..90754edcbff 100644
 --- a/Modules/_ssl.c
 +++ b/Modules/_ssl.c
-@@ -79,6 +79,10 @@ static PySocketModule_APIObject PySocketModule;
+@@ -69,6 +69,10 @@
  #  error "OPENSSL_THREADS is not defined, Python requires thread-safe OpenSSL"
  #endif
  
@@ -20,9 +20,9 @@ index 719f8e8ca3..61cce77b6d 100644
 +#  define OPENSSL_NO_SSL3 1
 +#endif
 +
- /* SSL error object */
- static PyObject *PySSLErrorObject;
- static PyObject *PySSLCertVerificationErrorObject;
+ 
+ 
+ struct py_ssl_error_code {
 -- 
-2.35.1
+2.45.2
 

@@ -1,4 +1,4 @@
-From 1dc2c773cea924359cc9ed424b3c52c3d6f64343 Mon Sep 17 00:00:00 2001
+From f0a03f4304afe508829b5e4e5d31bec6b8f2fb48 Mon Sep 17 00:00:00 2001
 From: Sam James <sam@gentoo.org>
 Date: Fri, 11 Nov 2022 08:18:25 +0000
 Subject: [PATCH 6/8] Skip tests which interact with invalid UTF-8 files
@@ -70,10 +70,10 @@ index c6accc4183a..6a0a691eedc 100644
      def test_unencodable_filename(self):
          # Issue #11619: The Python parser and the import machinery must not
 diff --git a/Lib/test/test_os.py b/Lib/test/test_os.py
-index 88037059e96..9466bb3eaab 100644
+index 7a04e5ad500..32ae702b812 100644
 --- a/Lib/test/test_os.py
 +++ b/Lib/test/test_os.py
-@@ -2568,6 +2568,7 @@ def add_filename(fn):
+@@ -2569,6 +2569,7 @@ def add_filename(fn):
      def tearDown(self):
          shutil.rmtree(self.dir)
  
@@ -81,7 +81,7 @@ index 88037059e96..9466bb3eaab 100644
      def test_listdir(self):
          expected = self.unicodefn
          found = set(os.listdir(self.dir))
-@@ -2580,11 +2581,13 @@ def test_listdir(self):
+@@ -2581,11 +2582,13 @@ def test_listdir(self):
          finally:
              os.chdir(current_directory)
  
@@ -95,7 +95,7 @@ index 88037059e96..9466bb3eaab 100644
      @unittest.skipUnless(hasattr(os, 'statvfs'),
                              "need os.statvfs()")
      def test_statvfs(self):
-@@ -2594,6 +2597,7 @@ def test_statvfs(self):
+@@ -2595,6 +2598,7 @@ def test_statvfs(self):
              fullname = os.path.join(self.dir, fn)
              os.statvfs(fullname)
  
@@ -154,11 +154,11 @@ index 47619c8807b..d2fd840e91f 100644
      # NFD (a variant of Unicode NFD form). Normalize the filename to NFC, NFKC,
      # NFKD in Python is useless, because darwin will normalize it later and so
 diff --git a/Lib/test/test_zipimport.py b/Lib/test/test_zipimport.py
-index 14c19719e26..678a4996396 100644
+index 12fd9826d86..ce74aef1121 100644
 --- a/Lib/test/test_zipimport.py
 +++ b/Lib/test/test_zipimport.py
-@@ -720,6 +720,7 @@ def testTraceback(self):
-         files = {TESTMOD + ".py": (NOW, raise_src)}
+@@ -718,6 +718,7 @@ def testTraceback(self):
+         files = {TESTMOD + ".py": raise_src}
          self.doTest(None, files, TESTMOD, call=self.doTraceback)
  
 +    @unittest.skip('Gentoo: fails on ZFS or other strict UTF8-only filesystems (bpo 37584)')

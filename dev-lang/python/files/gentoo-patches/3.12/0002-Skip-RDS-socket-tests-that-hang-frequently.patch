@@ -1,17 +1,17 @@
-From 12b1aa92bf9163915c8ba72968fbcf610d2df3b2 Mon Sep 17 00:00:00 2001
+From 33e53e1629c36ac9686543ba21a6068159aeb953 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Tue, 14 Jul 2020 18:05:32 +0200
-Subject: [PATCH 11/14] Skip RDS socket tests that hang frequently
+Subject: [PATCH 2/8] Skip RDS socket tests that hang frequently
 
 ---
  Lib/test/test_socket.py | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/Lib/test/test_socket.py b/Lib/test/test_socket.py
-index 5712b46f7f..7cc34d4ef7 100755
+index 545564094e1..656953fa1ca 100644
 --- a/Lib/test/test_socket.py
 +++ b/Lib/test/test_socket.py
-@@ -2237,6 +2237,7 @@ class BasicRDSTest(unittest.TestCase):
+@@ -2380,6 +2380,7 @@ def testSocketBufferSize(self):
  
  
  @unittest.skipUnless(HAVE_SOCKET_RDS, 'RDS sockets required for this test.')
@@ -20,5 +20,5 @@ index 5712b46f7f..7cc34d4ef7 100755
  
      def __init__(self, methodName='runTest'):
 -- 
-2.35.1
+2.45.2
 

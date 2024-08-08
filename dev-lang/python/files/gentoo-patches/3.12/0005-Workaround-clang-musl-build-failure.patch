@@ -1,4 +1,4 @@
-From 8f32f635a3c96d38cbc8262fc0902ad82f274f0f Mon Sep 17 00:00:00 2001
+From 5826dc5e8d0160e266aa5bfed8653295d3c08bb2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Fri, 9 Sep 2022 09:51:42 +0200
 Subject: [PATCH 5/8] Workaround clang+musl build failure
@@ -16,7 +16,7 @@ Bug: https://bugs.gentoo.org/862888
  1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 8a32cb58f4e..0a05d0d541b 100644
+index 0d6df8e24e4..74b12d61521 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -1106,11 +1106,22 @@ cat > conftest.c <<EOF

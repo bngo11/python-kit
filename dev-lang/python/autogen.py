@@ -15,14 +15,13 @@ async def generate(hub, **pkginfo):
 			continue
 
 		major, minor = v[2], v[3]
-		if f"{major}.{minor}" not in ["3.7", "3.8", "3.9", "3.10"]:
+		if f"{major}.{minor}" not in ["3.10", "3.12"]:
 			continue
 
 		versions.append(v[1])
 
 	revision = {
 		"2.7.18" : "1",
-		"3.10.4" : "1",
 	}
 
 	for version in versions:

@@ -1,7 +1,7 @@
-From f78fa7438e3f7a6229e872e0e06246c649488ba2 Mon Sep 17 00:00:00 2001
+From a3ffbe7514ecfb6a3456e404f5ca6c9a1b92fddb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
 Date: Wed, 22 Apr 2020 14:12:47 +0200
-Subject: [PATCH 10/14] Blacklist test_pickletools from __all__ test as it
+Subject: [PATCH 1/8] Blacklist test_pickletools from __all__ test as it
  imports numpy
 
 The test imports numpy, bringing its warnings along with it and causing
@@ -11,18 +11,18 @@ the test to fail.
  1 file changed, 2 insertions(+)
 
 diff --git a/Lib/test/test___all__.py b/Lib/test/test___all__.py
-index 7e1f80f251..8aeb24aef5 100644
+index ecf73b3ad1b..cd9b6256cf3 100644
 --- a/Lib/test/test___all__.py
 +++ b/Lib/test/test___all__.py
-@@ -79,6 +79,8 @@ class AllTest(unittest.TestCase):
-         blacklist = set([
+@@ -98,6 +98,8 @@ def test_all(self):
+         denylist = set([
              # Will raise a SyntaxError when compiling the exec statement
              '__future__',
 +            # imports numpy which causes warnings
 +            'test.test_pickletools',
          ])
  
-         if not sys.platform.startswith('java'):
+         # In case _socket fails to build, make this test fail more gracefully
 -- 
-2.35.1
+2.45.2
 
