@@ -2,6 +2,7 @@
 
 EAPI="7"
 WANT_LIBTOOL="none"
+DISTUTILS_USE_PEP517=setuptools
 
 inherit autotools check-reqs flag-o-matic multiprocessing pax-utils python-utils-r1 toolchain-funcs
 

@@ -2,6 +2,7 @@
 
 EAPI="7"
 WANT_LIBTOOL="none"
+DISTUTILS_USE_PEP517=setuptools
 
 inherit autotools check-reqs flag-o-matic multiprocessing pax-utils python-utils-r1 toolchain-funcs
 
@@ -205,9 +206,6 @@ src_compile() {
 	# Ensure sed works as expected
 	# https://bugs.gentoo.org/594768
 	local -x LC_ALL=C
-	# Prevent using distutils bundled by setuptools.
-	# https://bugs.gentoo.org/823728
-	export SETUPTOOLS_USE_DISTUTILS=stdlib
 
 	if use pgo ; then
 		# bug 660358
