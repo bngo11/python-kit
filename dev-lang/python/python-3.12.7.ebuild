@@ -11,7 +11,7 @@ PYVER=$(ver_cut 1-2)
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
-SRC_URI="https://www.python.org/ftp/python/3.12.6/Python-3.12.6.tar.xz -> Python-3.12.6.tar.xz"
+SRC_URI="https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tar.xz -> Python-3.12.7.tar.xz"
 
 S="${WORKDIR}/${MY_P}"
 
