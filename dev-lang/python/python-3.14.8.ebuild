@@ -13,7 +13,7 @@ PATCHSET="python-gentoo-patches-${MY_PV}"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
-SRC_URI="https://www.python.org/ftp/python/3.14.7/Python-3.14.7.tar.xz -> Python-3.14.7.tar.xz
+SRC_URI="https://www.python.org/ftp/python/3.14.8/Python-3.14.8.tar.xz -> Python-3.14.8.tar.xz
 	https://distfiles.gentoo.org/pub/proj/python/patchsets/${PYVER%t}/${PATCHSET}.tar.xz
 "
 
