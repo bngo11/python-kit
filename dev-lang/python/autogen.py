@@ -25,14 +25,16 @@ async def generate(hub, **pkginfo):
 	}
 
 	for version in versions:
-		shortver = "_".join(version.split(".")[0:2])
+		shortver = version.split(".")[0:2]
+		patch_url = f"https://distfiles.gentoo.org/pub/proj/python/patchsets/{'.'.join(shortver)}/python-gentoo-patches-{version}.tar.xz"
 		python_url = f"https://www.python.org/ftp/python/{version}/Python-{version}.tar.xz"
 		ebuild = hub.pkgtools.ebuild.BreezyBuild(
 			**pkginfo,
 			version=version,
 			revision=revision,
-			artifacts=[hub.pkgtools.ebuild.Artifact(url=python_url)],
-			template=f'{pkginfo["name"]}{shortver}.tmpl',
+			artifacts=[hub.pkgtools.ebuild.Artifact(url=python_url),
+					hub.pkgtools.ebuild.Artifact(url=patch_url)],
+			template=f'{pkginfo["name"]}{"_".join(shortver)}.tmpl',
 		)
 		ebuild.push()
 

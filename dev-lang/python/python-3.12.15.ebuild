@@ -11,7 +11,8 @@ PYVER=$(ver_cut 1-2)
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
-SRC_URI="https://www.python.org/ftp/python/3.12.15/Python-3.12.15.tar.xz -> Python-3.12.15.tar.xz"
+SRC_URI="https://www.python.org/ftp/python/3.12.15/Python-3.12.15.tar.xz -> Python-3.12.15.tar.xz
+https://distfiles.gentoo.org/pub/proj/python/patchsets/3.12/python-gentoo-patches-3.12.15.tar.xz -> python-gentoo-patches-3.12.15.tar.xz"
 
 S="${WORKDIR}/${MY_P}"
 
